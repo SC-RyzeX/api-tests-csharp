@@ -1,25 +1,25 @@
-# api-tests-csharp
-Sum tests or sum like dat just freestyling
-THESE ARE MY NONSENSE TESTS OF BEGINNER LEVEL SO EXPECT MISTAKES AND MAYBE SOME ERRORS 
-I DO THIS FOR FUN AND FOR SELF-EDU PURPOSES(for now)
+# QA Automation: API + UI (C# / .NET 10 / xUnit)
 
-# API Tests (C# / xUnit)
-
-Автотесты для публичного тестового API https://jsonplaceholder.typicode.com
+## Структура
+- `Api/` : API-тесты (jsonplaceholder.typicode.com)
+- `Ui/` : UI-тесты на Selenium (saucedemo.com), паттерн Page Object
+- `Ui/Pages/` : классы страниц (LoginPage, InventoryPage, CartPage)
+- `ManualChecklist.md` : ручной чек-лист
 
 ## Что проверяется
-- `PostsApiTests.cs`:
-  - GetPost_ReturnsCorrectPost: GET /posts/1 возвращает 200 и правильный id
-  - CreatePost_Returns201: POST /posts возвращает 201 и тот же title
-  - GetUser_ReturnsRequestedUser: Theory с 3 наборами данных (id 1, 2, 3)
+- API: GET и POST запросы, коды ответов 200/201, содержимое ответа, Theory с 3 наборами данных
+- UI: логин (валидный и 3 негативных набора данных), 6 товаров на странице, добавление в корзину
+
+## Требования
+.NET 8 SDK, Google Chrome
 
 ## Запуск
-Нужен .NET 8 SDK.
+    dotnet test                              (все тесты)
+    dotnet test --filter Category=API        (только API)
+    dotnet test --filter Category=UI         (только UI)
 
-    dotnet test
+Без окна браузера (PowerShell):
+    $env:HEADLESS="1"; dotnet test --filter Category=UI
 
 ## На что смотреть
-Файл `PostsApiTests.cs`: проверки ожидаемого результата (Assert) в каждом тесте.
-
-## Manual QA
-См. `ManualChecklist.md`
+Проверки ожидаемого результата (Assert) в каждом тесте.

@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.Json;
 using Xunit;
 
+[Trait("Category", "API")]
 public class PostsApiTests
 {
     private static readonly HttpClient Client =
